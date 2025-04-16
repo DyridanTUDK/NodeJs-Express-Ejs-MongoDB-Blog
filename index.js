@@ -2,6 +2,10 @@ require("dotenv").config();
 
 const express = require("express");
 const expressLayout = require("express-ejs-layouts");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+// const mongoStore =
 
 // Database connected
 const connectDB = require("./server/config/db");
@@ -11,6 +15,18 @@ const PORT = 5000 || process.env.PORT;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+    }),
+  })
+);
 
 app.use(express.static("public"));
 //  Templating Engineer
@@ -25,6 +41,5 @@ app.use("/", require("./server/routes/admin"));
 // Initiation of server
 app.listen(PORT, () => {
   connectDB();
-
   console.log("server is running on port " + PORT);
 });
