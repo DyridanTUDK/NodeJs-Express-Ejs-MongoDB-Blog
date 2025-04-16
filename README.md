@@ -18,7 +18,7 @@ Image of landing Page
 - ### ("/admin") admin route:
 
   This page uses bycrpt to salt your passwords, then compares the salt gives a JWT token to hold your login sessions.
-  ![Image](https://pasteboard.co/nlfzqjOEHXf5.png)
+  ![Image](https://gcdnb.pbrd.co/images/nlfzqjOEHXf5.png?o=1)
 
 - ### ("/dashboard") dashboard allowed:
   This route allows you to add , edit and delete posts.
