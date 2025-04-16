@@ -13,7 +13,7 @@
   This is the landing page of the website which is render using EJS, and using partials templates such as header footer and search. The post are fetch from MongoDB. Then posts are being dynamically rendered by ejs by passing the data through search by ID
 
 Image of landing Page
-![Image](https://pasteboard.co/dyVNIR6Tp8tT.png)
+![Image](https://gcdnb.pbrd.co/images/dyVNIR6Tp8tT.png?o=1)
 
 - ### ("/admin") admin route:
 
@@ -22,4 +22,4 @@ Image of landing Page
 
 - ### ("/dashboard") dashboard allowed:
   This route allows you to add , edit and delete posts.
-  ![Image](https://pasteboard.co/ZGomu4c9kJlU.png)
+  ![Image](https://gcdnb.pbrd.co/images/ZGomu4c9kJlU.png?o=1)
