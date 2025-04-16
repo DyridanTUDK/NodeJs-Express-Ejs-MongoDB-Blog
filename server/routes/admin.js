@@ -52,7 +52,7 @@ router.post("/admin", async (req, res) => {
 
     const token = jwt.sign({ userId: user._id }, jwtSecret);
     res.cookie("token", token, { httpOnly: true });
-    res.redirect("/dashBoard");
+    res.redirect("/dashboard");
   } catch (error) {
     console.log(error);
   }
@@ -69,6 +69,7 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
     res.render("admin/dashboard", {
       locals,
       data,
+      layout: adminLayout,
     });
   } catch (error) {}
 });
@@ -172,4 +173,22 @@ router.post("/register", async (req, res) => {
   }
 });
 
+/*
+  Delete 
+  Admin - Create New Post
+*/
+router.delete("/delete-post/:id", authMiddleware, async (req, res) => {
+  try {
+    await Post.deleteOne({ _id: req.params.id });
+    res.redirect("/dashboard");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Admin Logout
+router.get("/logout", async (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/");
+});
 module.exports = router;

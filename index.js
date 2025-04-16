@@ -6,8 +6,7 @@ const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-// const mongoStore =
-
+const { isActiveRoute } = require("./server/helpers/routeHelpers");
 // Database connected
 const connectDB = require("./server/config/db");
 // Database connected
@@ -38,6 +37,8 @@ app.set("view engine", "ejs");
 
 app.use("/", require("./server/routes/main"));
 app.use("/", require("./server/routes/admin"));
+
+app.locals.isActiveRoute = isActiveRoute;
 
 // Do not change
 // Initiation of server
