@@ -107,6 +107,40 @@ router.post("/add-post", authMiddleware, async (req, res) => {
   }
 });
 
+// Get edit-post
+router.get("/edit-post/:id", authMiddleware, async (req, res) => {
+  try {
+    const locals = {
+      title: "Add Post",
+      description: "Simple Blog created with NodeJs, Express & MongoDB",
+    };
+    const data = await Post.findOne({ _id: req.params.id });
+
+    res.render(`admin/edit-post`, {
+      locals,
+      data,
+      layout: adminLayout,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// PUT
+router.put("/edit-post/:id", authMiddleware, async (req, res) => {
+  try {
+    await Post.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      body: req.body.body,
+      updatedAt: Date.now(),
+    });
+
+    res.redirect(`${req.params.id}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // Admin register
 router.get("/register", async (req, res) => {
   try {
