@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../model/Post");
 const User = require("../model/User");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const adminLayout = "../views/layout/admin";
